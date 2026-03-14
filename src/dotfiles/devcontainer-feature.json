@@ -21,10 +21,10 @@
       "type": "string",
       "default": "root",
       "description": "User to install dotfiles for"
-    },
-    "installsAfter": [
-      "ghcr.io/devcontainers/features/common-utils",
-      "ghcr.io/devcontainers/features/git"
-    ]
-  }
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils",
+    "ghcr.io/devcontainers/features/git"
+  ]
 }
