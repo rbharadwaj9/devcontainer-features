@@ -1,7 +1,7 @@
 {
   "name": "rbharadwaj9 stow based dotfiles installer",
   "id": "dotfiles",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Clones and installs dotfiles using stow",
   "dependsOn": {
     "ghcr.io/devcontainers/features/git:1": {},
