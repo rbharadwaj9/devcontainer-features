@@ -34,7 +34,8 @@ cd "$DOTFILES_DIR"
 git checkout stow
 
 # stow all packages
-stow -R .
+stow --adopt .
+git restore .
 
 # fix permissions for non-root
 if [ "$TARGET_USER" != "root" ]; then
