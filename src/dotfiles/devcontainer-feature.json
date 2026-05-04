@@ -1,7 +1,7 @@
 {
   "name": "rbharadwaj9 stow based dotfiles installer",
   "id": "dotfiles",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Clones and installs dotfiles using stow",
   "containerEnv": {
     "RBHARADWAJ_DEVC": "1"
