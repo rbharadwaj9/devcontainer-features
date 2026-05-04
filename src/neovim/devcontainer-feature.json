@@ -1,0 +1,16 @@
+{
+  "name": "Neovim (prebuilt binary)",
+  "id": "neovim",
+  "version": "1.0.0",
+  "description": "Installs a pinned version of Neovim from prebuilt GitHub Release binaries",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "v0.12.2",
+      "description": "Neovim release tag to install (e.g. 'v0.10.4', 'v0.11.2', 'nightly')"
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
+}

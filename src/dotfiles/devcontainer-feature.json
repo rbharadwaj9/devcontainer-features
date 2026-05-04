@@ -3,13 +3,8 @@
   "id": "dotfiles",
   "version": "1.0.1",
   "description": "Clones and installs dotfiles using stow",
-  "dependsOn": {
-    "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/duduribeiro/devcontainer-features/neovim:1": { "version": "nightly" },
-    "ghcr.io/duduribeiro/devcontainer-features/tmux:1": {},
-    "ghcr.io/devcontainers/features/node:1": {},
-    "ghcr.io/jayree/devcontainer-features/npm-registry:1": {}
+  "containerEnv": {
+    "RBHARADWAJ_DEVC": "1"
   },
   "options": {
     "repo": {
@@ -21,10 +16,20 @@
       "type": "string",
       "default": "root",
       "description": "User to install dotfiles for"
+    },
+    "branch": {
+      "type": "string",
+      "default": "stow",
+      "description": "Branch to checkout after cloning"
     }
   },
   "installsAfter": [
     "ghcr.io/devcontainers/features/common-utils",
-    "ghcr.io/devcontainers/features/git"
+    "ghcr.io/devcontainers/features/git",
+    "ghcr.io/devcontainers/features/github-cli",
+    "ghcr.io/devcontainers/features/node",
+    "ghcr.io/duduribeiro/devcontainer-features/tmux",
+    "ghcr.io/jayree/devcontainer-features/npm-registry",
+    "ghcr.io/rbharadwaj9/rbharadwaj_devc/neovim:1"
   ]
 }
