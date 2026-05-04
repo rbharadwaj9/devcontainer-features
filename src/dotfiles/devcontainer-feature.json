@@ -1,7 +1,7 @@
 {
   "name": "rbharadwaj9 stow based dotfiles installer",
   "id": "dotfiles",
-  "version": "1.0.2",
+  "version": "0.0.3",
   "description": "Clones and installs dotfiles using stow",
   "containerEnv": {
     "RBHARADWAJ_DEVC": "1"
@@ -30,6 +30,6 @@
     "ghcr.io/devcontainers/features/node",
     "ghcr.io/duduribeiro/devcontainer-features/tmux",
     "ghcr.io/jayree/devcontainer-features/npm-registry",
-    "ghcr.io/rbharadwaj9/rbharadwaj_devc/neovim:1"
+    "ghcr.io/rbharadwaj9/devcontainer-features/neovim:1"
   ]
 }
