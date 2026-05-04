@@ -1,8 +1,8 @@
 {
   "name": "Neovim (prebuilt binary)",
   "id": "neovim",
-  "version": "1.0.0",
-  "description": "Installs a pinned version of Neovim from prebuilt GitHub Release binaries",
+  "version": "0.0.1",
+  "description": "Installs a pinned version of Neovim from prebuilt GitHub Release binaries, then runs headless plugin/LSP/parser setup",
   "options": {
     "version": {
       "type": "string",
@@ -10,7 +10,13 @@
       "description": "Neovim release tag to install (e.g. 'v0.10.4', 'v0.11.2', 'nightly')"
     }
   },
+  "dependsOn": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/jayree/devcontainer-features/npm-registry:1": {}
+  },
   "installsAfter": [
-    "ghcr.io/devcontainers/features/common-utils"
+    "ghcr.io/devcontainers/features/common-utils",
+    "ghcr.io/devcontainers/features/node",
+    "ghcr.io/jayree/devcontainer-features/npm-registry"
   ]
 }
