@@ -1,12 +1,13 @@
 {
   "name": "rbharadwaj9 stow based dotfiles installer",
   "id": "dotfiles",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Clones and installs dotfiles using stow",
   "dependsOn": {
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/duduribeiro/devcontainer-features/tmux:1": {}
+    "ghcr.io/duduribeiro/devcontainer-features/tmux:1": {},
+    "ghcr.io/rbharadwaj9/devcontainer-features/neovim:1": {}
   },
   "containerEnv": {
     "RBHARADWAJ_DEVC": "1"
@@ -32,6 +33,7 @@
     "ghcr.io/devcontainers/features/common-utils",
     "ghcr.io/devcontainers/features/git",
     "ghcr.io/devcontainers/features/github-cli",
-    "ghcr.io/duduribeiro/devcontainer-features/tmux"
+    "ghcr.io/duduribeiro/devcontainer-features/tmux",
+    "ghcr.io/rbharadwaj9/devcontainer-features/neovim:1"
   ]
 }
