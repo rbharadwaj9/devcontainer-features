@@ -7,7 +7,7 @@ Clones and installs dotfiles using stow
 
 ```json
 "features": {
-    "ghcr.io/rbharadwaj9/devcontainer-features/dotfiles:1": {}
+    "ghcr.io/rbharadwaj9/devcontainer-features/dotfiles:0": {}
 }
 ```
 
@@ -17,6 +17,7 @@ Clones and installs dotfiles using stow
 |-----|-----|-----|-----|
 | repo | Dotfiles repository | string | https://github.com/rbharadwaj9/dotfiles.git |
 | targetUser | User to install dotfiles for | string | root |
+| branch | Branch to checkout after cloning | string | stow |
 
 
 
