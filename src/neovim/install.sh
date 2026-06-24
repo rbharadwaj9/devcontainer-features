@@ -2,10 +2,21 @@
 set -e
 
 VERSION=${VERSION:-v0.12.2}
+TARGET_USER="${TARGETUSER:-${_REMOTE_USER:-root}}"
 
-echo "Installing Neovim $VERSION from prebuilt binary"
+if [ "$TARGET_USER" = "root" ]; then
+    USER_HOME="/root"
+else
+    USER_HOME=$(getent passwd "$TARGET_USER" | cut -d: -f6)
+    if [ -z "$USER_HOME" ]; then
+        echo "Error: could not determine home directory for user '$TARGET_USER'" >&2
+        exit 1
+    fi
+fi
 
-# map uname arch to Neovim release asset name
+echo "Installing Neovim $VERSION from prebuilt binary (for user $TARGET_USER)"
+
+# Map uname arch to Neovim release asset name
 ARCH=$(uname -m)
 case "$ARCH" in
     x86_64)  NVIM_ARCH="x86_64" ;;
@@ -29,7 +40,7 @@ rm -rf /var/lib/apt/lists/*
 TMPDIR=$(mktemp -d)
 curl -fsSL "$URL" -o "$TMPDIR/$TARBALL"
 
-# extract — the tarball contains a single top-level dir (e.g. nvim-linux-x86_64/)
+# Extract — the tarball contains a single top-level dir (e.g. nvim-linux-x86_64/)
 # stripping it so bin/nvim lands at /usr/local/bin/nvim
 tar -C /usr/local --strip-components=1 -xzf "$TMPDIR/$TARBALL"
 
@@ -39,15 +50,21 @@ echo "Neovim $(nvim --version | head -1) installed at $(command -v nvim)"
 
 # Run headless setup if the nvim config is present (i.e. dotfiles feature ran first).
 # Mirrors the Dockerfile sequence: stow → Lazy sync → TSInstall → Mason installs.
-NVIM_CONFIG="${HOME:-/root}/.config/nvim"
+NVIM_CONFIG="$USER_HOME/.config/nvim"
 if [ -d "$NVIM_CONFIG" ]; then
     echo "Neovim config found at $NVIM_CONFIG — running headless setup..."
 
     nvim_headless() {
-        if [ "${TARGET_USER:-root}" = "root" ]; then
-            HOME="${HOME:-/root}" nvim "$@"
+        if [ "$TARGET_USER" = "root" ]; then
+            HOME="$USER_HOME" nvim "$@"
         else
-            su -s /bin/sh "$TARGET_USER" -c "HOME='$USER_HOME' nvim $*"
+            # Build the argument string safely; arguments are flag-style so
+            # quoting each with single quotes is sufficient here.
+            _args=""
+            for _a in "$@"; do
+                _args="$_args '$_a'"
+            done
+            su -s /bin/sh "$TARGET_USER" -c "HOME='$USER_HOME' nvim $_args"
         fi
     }
 

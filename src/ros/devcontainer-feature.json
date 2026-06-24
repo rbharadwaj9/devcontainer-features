@@ -1,0 +1,27 @@
+{
+  "name": "ROS environment setup",
+  "id": "ros",
+  "version": "0.0.1",
+  "description": "Sources ROS distro setup files and optionally a workspace overlay into shell rc files. Safe to use on non-ROS containers — sourcing is conditional.",
+  "options": {
+    "rosDistro": {
+      "type": "string",
+      "default": "auto",
+      "description": "ROS distro to source (e.g. 'humble', 'jazzy'), or 'auto' to detect from /opt/ros"
+    },
+    "workspaceSetupPath": {
+      "type": "string",
+      "default": "",
+      "description": "Absolute path to a workspace setup file to source after the distro (e.g. /ws/install/setup.bash)"
+    },
+    "targetUser": {
+      "type": "string",
+      "default": "root",
+      "description": "User whose shell rc files to modify"
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils",
+    "ghcr.io/rbharadwaj9/devcontainer-features/dotfiles:0"
+  ]
+}

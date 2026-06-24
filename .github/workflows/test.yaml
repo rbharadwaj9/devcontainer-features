@@ -1,0 +1,57 @@
+name: "Test devcontainer features"
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  test-neovim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install devcontainer CLI
+        run: npm install -g @devcontainers/cli
+
+      - name: Test neovim feature
+        run: |
+          devcontainer features test \
+            --features neovim \
+            --base-image mcr.microsoft.com/devcontainers/base:ubuntu-24.04 \
+            --project-folder .
+
+  test-dotfiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install devcontainer CLI
+        run: npm install -g @devcontainers/cli
+
+      - name: Test dotfiles feature (root)
+        run: |
+          devcontainer features test \
+            --features dotfiles \
+            --base-image mcr.microsoft.com/devcontainers/base:ubuntu-24.04 \
+            --project-folder .
+
+  test-ros:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install devcontainer CLI
+        run: npm install -g @devcontainers/cli
+
+      - name: Test ROS feature (no-op on plain Ubuntu — verifies graceful exit)
+        run: |
+          devcontainer features test \
+            --features ros \
+            --base-image mcr.microsoft.com/devcontainers/base:ubuntu-24.04 \
+            --project-folder .
+
+      - name: Test ROS feature (with Humble base image)
+        run: |
+          devcontainer features test \
+            --features ros \
+            --base-image osrf/ros:humble-desktop \
+            --project-folder .
